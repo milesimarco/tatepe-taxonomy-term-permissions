@@ -68,5 +68,5 @@ Only if you ask for it: enable "Delete all the rules when the plugin is deleted"
 
 == Changelog ==
 
-= 1.0.0 2026-10-08 =
+= 1.0.0 2026-10-09 =
 * New: First public release.
