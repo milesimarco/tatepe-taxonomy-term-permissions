@@ -16,14 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class Taxonomy_Permissions {
+class TATEPE_Taxonomy_Term_Permissions {
 
 	const VERSION       = '1.0.0';
 	const PAGE          = 'tatepe-taxonomy-term-permissions';
-	const OPTION_ROLES  = 'taxonomy_permissions_roles';
-	const OPTION_USERS  = 'taxonomy_permissions_users';
-	const OPTION_DELETE = 'taxonomy_permissions_delete_on_uninstall';
-	const RESET_ACTION  = 'taxonomy_permissions_reset';
+	const OPTION_ROLES  = 'tatepe_roles';
+	const OPTION_USERS  = 'tatepe_users';
+	const OPTION_DELETE = 'tatepe_delete_on_uninstall';
+	const RESET_ACTION  = 'tatepe_reset';
 
 	/**
 	 * Excluded terms per user ID, computed once per request.
@@ -355,7 +355,7 @@ class Taxonomy_Permissions {
 
 	public function register_settings() {
 		register_setting(
-			'taxonomy_permissions_roles_group',
+			'tatepe_roles_group',
 			self::OPTION_ROLES,
 			array(
 				'type'              => 'array',
@@ -363,7 +363,7 @@ class Taxonomy_Permissions {
 			)
 		);
 		register_setting(
-			'taxonomy_permissions_users_group',
+			'tatepe_users_group',
 			self::OPTION_USERS,
 			array(
 				'type'              => 'array',
@@ -371,7 +371,7 @@ class Taxonomy_Permissions {
 			)
 		);
 		register_setting(
-			'taxonomy_permissions_uninstall_group',
+			'tatepe_uninstall_group',
 			self::OPTION_DELETE,
 			array(
 				'type'              => 'boolean',
@@ -568,7 +568,7 @@ class Taxonomy_Permissions {
 
 			<h2><?php esc_html_e( 'Uninstall', 'tatepe-taxonomy-term-permissions' ); ?></h2>
 			<form method="post" action="options.php">
-				<?php settings_fields( 'taxonomy_permissions_uninstall_group' ); ?>
+				<?php settings_fields( 'tatepe_uninstall_group' ); ?>
 				<p>
 					<label>
 						<input type="checkbox" name="<?php echo esc_attr( self::OPTION_DELETE ); ?>" value="1" <?php checked( (bool) get_option( self::OPTION_DELETE ) ); ?> />
@@ -586,7 +586,7 @@ class Taxonomy_Permissions {
 		?>
 		<form method="post" action="options.php">
 			<?php
-			settings_fields( 'taxonomy_permissions_roles_group' );
+			settings_fields( 'tatepe_roles_group' );
 
 			foreach ( get_editable_roles() as $role => $details ) {
 				if ( ! empty( $details['capabilities']['manage_options'] ) ) {
@@ -657,7 +657,7 @@ class Taxonomy_Permissions {
 
 		?>
 		<form method="post" action="options.php">
-			<?php settings_fields( 'taxonomy_permissions_users_group' ); ?>
+			<?php settings_fields( 'tatepe_users_group' ); ?>
 			<input type="hidden" name="<?php echo esc_attr( self::OPTION_USERS ); ?>[_edited]" value="<?php echo esc_attr( $user->ID ); ?>" />
 			<h3><?php echo esc_html( $user->display_name ); ?></h3>
 			<?php
@@ -757,4 +757,4 @@ class Taxonomy_Permissions {
 	}
 }
 
-new Taxonomy_Permissions();
+new TATEPE_Taxonomy_Term_Permissions();
