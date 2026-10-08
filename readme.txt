@@ -60,6 +60,12 @@ Better not. WordPress assigns the default category to every post saved without a
 
 Only if you ask for it: enable "Delete all the rules when the plugin is deleted" at the bottom of the settings page. Otherwise the rules are kept, and you find them again if you reinstall the plugin.
 
+== Screenshots ==
+
+1. Roles tab: the terms in which each role cannot publish. A checked term also restricts its child terms.
+2. Users tab: rules for a single user, which replace the rules of their roles.
+3. The block editor for an author: the restricted categories are not listed.
+
 == Changelog ==
 
 = 1.0.0 2026-10-08 =
