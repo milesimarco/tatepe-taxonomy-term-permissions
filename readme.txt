@@ -24,8 +24,6 @@ Rules set for a single user replace the rules of their roles. Users who can mana
 
 The plugin only limits publishing: it does not change what visitors see on the front end, and it does not prevent a restricted user from reading a post.
 
-Based on "Restrict Taxonomies" by Mateus Souza.
-
 == Installation ==
 
 1. Upload the `tatepe-taxonomy-term-permissions` folder to the `/wp-content/plugins/` directory, or install the plugin from the Plugins screen.
