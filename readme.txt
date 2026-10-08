@@ -2,7 +2,7 @@
 Contributors: milmor
 Tags: taxonomy, terms, restrict, roles, permissions
 Requires at least: 5.3
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -50,6 +50,10 @@ The user rules win. As soon as at least one term is checked for a user in the Us
 
 No. Users who can manage options are never restricted, and the Reset button removes every rule.
 
+= Are child terms restricted too? =
+
+Yes. A checked term restricts all its child terms, including the ones added later.
+
 = Can I restrict the default category? =
 
 Better not. WordPress assigns the default category to every post saved without a category, whoever the author is, so a restricted user could still end up publishing in it.
@@ -60,5 +64,5 @@ Only if you ask for it: enable "Delete all the rules when the plugin is deleted"
 
 == Changelog ==
 
-= 1.0.0 =
-* First public release.
+= 1.0.0 2026-10-08 =
+* New: First public release.
