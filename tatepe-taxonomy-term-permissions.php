@@ -111,7 +111,22 @@ class TATEPE_Taxonomy_Term_Permissions {
 		}
 
 		foreach ( $excluded as $taxonomy => $term_ids ) {
-			$excluded[ $taxonomy ] = array_values( array_unique( array_filter( array_map( 'absint', $term_ids ) ) ) );
+			$term_ids = array_filter( array_map( 'absint', $term_ids ) );
+
+			// A restricted term restricts its descendants too, including those added later.
+			if ( is_taxonomy_hierarchical( $taxonomy ) ) {
+				$bypass       = $this->bypass;
+				$this->bypass = true; // The term hierarchy may be rebuilt with a term query.
+				foreach ( $term_ids as $term_id ) {
+					$children = get_term_children( $term_id, $taxonomy );
+					if ( ! is_wp_error( $children ) ) {
+						$term_ids = array_merge( $term_ids, array_map( 'intval', $children ) );
+					}
+				}
+				$this->bypass = $bypass;
+			}
+
+			$excluded[ $taxonomy ] = array_values( array_unique( $term_ids ) );
 		}
 
 		$this->excluded[ $user->ID ] = array_filter( $excluded );
@@ -327,9 +342,10 @@ class TATEPE_Taxonomy_Term_Permissions {
 			return array();
 		}
 
+		$bypass       = $this->bypass;
 		$this->bypass = true;
 		$term_ids     = wp_get_object_terms( $object_id, $taxonomy, array( 'fields' => 'ids' ) );
-		$this->bypass = false;
+		$this->bypass = $bypass;
 
 		return is_wp_error( $term_ids ) ? array() : array_map( 'intval', $term_ids );
 	}
@@ -540,6 +556,7 @@ class TATEPE_Taxonomy_Term_Permissions {
 
 			<p>
 				<?php esc_html_e( 'The role or user cannot publish in the checked terms: they are hidden, together with the posts assigned to them. Rules set for a single user replace the rules of their roles.', 'tatepe-taxonomy-term-permissions' ); ?>
+				<?php esc_html_e( 'A checked term also restricts all its child terms.', 'tatepe-taxonomy-term-permissions' ); ?>
 				<?php esc_html_e( 'Users who can manage options are never restricted.', 'tatepe-taxonomy-term-permissions' ); ?>
 			</p>
 
