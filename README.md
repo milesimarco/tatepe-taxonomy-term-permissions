@@ -1,5 +1,7 @@
 # TATEPE – Taxonomy Term Permissions
 
+
+![TATEPE – Taxonomy Term Permissions](.wordpress-org/banner-1544x500.png)
 [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/tatepe-taxonomy-term-permissions)](https://wordpress.org/plugins/tatepe-taxonomy-term-permissions/)
 [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tatepe-taxonomy-term-permissions)](https://wordpress.org/plugins/tatepe-taxonomy-term-permissions/)
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/rating/tatepe-taxonomy-term-permissions)](https://wordpress.org/plugins/tatepe-taxonomy-term-permissions/reviews/)
